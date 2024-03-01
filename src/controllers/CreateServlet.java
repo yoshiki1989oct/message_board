@@ -51,6 +51,10 @@ public class CreateServlet extends HttpServlet {
 
             em.persist(m);
             em.getTransaction().commit();
+
+            // フラッシュメッセージをセッションスコープから取り出し、表示するコードを追加
+            request.getSession().setAttribute("flush", "登録が完了しました。");
+
             em.close();
 
             response.sendRedirect(request.getContextPath() + "/index");
